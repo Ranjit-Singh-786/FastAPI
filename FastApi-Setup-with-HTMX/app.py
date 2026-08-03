@@ -1,9 +1,10 @@
 from pathlib import Path
 
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, Request,Form,UploadFile,File,BackgroundTasks
 from fastapi.staticfiles import StaticFiles
-from fastapi.responses import HTMLResponse
+from fastapi.responses import HTMLResponse,JSONResponse
 from fastapi.templating import Jinja2Templates
+from pydantic import BaseModel
 
 
 BASE_DIR = Path(__file__).resolve().parent
@@ -25,6 +26,7 @@ async def test(request: Request):
 
 
 
+
 @app.get("/contact",response_class=HTMLResponse)
 async def contact(request:Request):
     return templates.TemplateResponse(request,"contact.html",{
@@ -39,3 +41,13 @@ async def service(request:Request):
 @app.get("/about",response_class=HTMLResponse)
 async def about(request:Request):
     return templates.TemplateResponse(request,"about.html")
+
+
+
+# TEST RESPONSE VALIDATION SCHEMA 
+class TestResponse(BaseModel):
+    data:str 
+@app.post("/test",response_model=TestResponse)
+def test_fun(request:Request,test_message:str):
+    """http:localhost:8000/test?test_message=helloworld"""
+    return TestResponse(data=f"Data from : {test_message}")

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{{ title }}</title>
+    
+
+    <link rel="stylesheet" href="/static/style.css">
+
+    <script src="https://unpkg.com/htmx.org"></script>
+</head>
+<body>
+<script src="https://unpkg.com/htmx.org"></script>
+<header>
+    <div class="container">
+        <h2>FastSite</h2>
+
+        <nav>
+            <a href="/about">About</a>
+            <a href="/service">Services</a>
+            <a href="/contact">Contact</a>
+        </nav>
+    </div>
+</header>
+<h4>{{ headingtext }}</h4>
+
+    <button
+        hx-get="/about"
+        hx-target="#aboutpage"
+        hx-swap="innerHTML">
+        Get Started
+    </button>
+<div id="aboutpage"></div>
+
+
+
+<footer>
+    <p>© 2026 FastSite. All Rights Reserved.</p>
+</footer>
+
+</body>
+</html>
