@@ -1,0 +1,42 @@
+docker ps       <-- To check running container 
+docker ps -a    <-- To check all container weather stopped or running
+
+docker rmi image_name   <--- To remove docker images, but make sure first delete the container of particular image.
+docker rm container_id  <-- To remove container
+
+docker build -t image_name .    <--- To build docker image
+
+
+docker run -d -p 6001:6001 --name my-fastapi-container my-fastapi-app     ---> To assign container name --name my-fastapi-container
+docker run -d -p host_port:container_port image_name 
+
+
+-p HOST_PORT:CONTAINER_PORT
+   │             │
+   │             └── Docker container ke andar jo application chal rha he, uska port
+   └── tumhare machine ka port, jispr request. jo k map kr diya gya he andar wale port se.
+dockr stop container_id    <-- To stop running container
+
+
+# Docker compose commands
+
+docker compose up --build    <--- build the image, then start the service
+docker compose up -d --build  < run in detached mode
+docker compose down           <---  To stop down the running services
+docker compose ps            <--- To check running containers
+docker compose restart
+docker compose logs
+
+
+# To push image on Docker hub
+
+1. docker login   <--  ( docker_hub username and docker_hub password )
+2. docker images   <--checkout the name of the image, that u want to push
+3. docker tag image_name:latest username/repo_name:latest    ----> e.g  (  docker tag singleapp:latest ranjitsingh00786/demo:latest    
+								--> it will create a new reference of ur image "singleapp:latest" with same image_id
+4. docker push ranjitsingh00786/demo:latest           <---- push this tag
+
+# To pull this image from docker hub
+1.  docker pull ranjitsingh00786/demo:latest
+
+
