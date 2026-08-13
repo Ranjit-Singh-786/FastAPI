@@ -39,4 +39,43 @@ docker compose logs
 # To pull this image from docker hub
 1.  docker pull ranjitsingh00786/demo:latest
 
+============== NETWORK RELATED COMMAND   =============================
+# CHECKOUT COMPLETE INFORMATION OF THE PARTICULAR NETWORK
+
+docker network ls     <--- To checkout all the configured network
+
+docker inspect <container_name>   <-- container specific network details fetch command.
+
+Simple Command:
+docker network inspect multi-services-app-with-docker-compose_smartfarm_net
+note: "multi-services-app-with-docker-compose_smartfarm_net" network name
+
+Extract Information and return in formatted way:
+docker network inspect multi-services-app-with-docker-compose_smartfarm_net --format "{{range .Containers}}{{.Name}} -> {{.IPv4Address}}{{println}}{{end}}"
+
+
+
+
+
+### ================   SETUP MYSQL WITH DOCKER  ==============================
+1. Pull the MySQL image 
+   docker pull mysql:8.0
+
+2. run docker image, initialize docker container
+   docker run -d --name mysql_container_name -e MYSQL_ROOT_PASSWORD=root123 -p 3306:3306 mysql:8.0
+
+3. login in MySQL with in docker container.
+   docker exec -it mysql_container_name mysql -u root -p
+
+Note: docker exec -it used to run command in running conatainer. 
+docker exec -it mysql_container_name "command to be executed" 
+
+docker exec -it smartfarm_mysql bash   <-- bash in container 
+
+
+
+
+
+
+
 
